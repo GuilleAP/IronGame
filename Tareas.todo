@@ -1,0 +1,47 @@
+#DIA 0: 
+    DONE Crear bordes del mapa y obtener matriz. 
+    DONE drawMap no funciona.
+    DONE Hacer que el personaje se mueva.
+    DONE Imagen de ash mida optima.
+
+#FIN DE SEMANA:
+    ☐ Obtener imagenes de pokemons 32x32.
+        - Pikachu ✅
+        - Charmander ✅
+        - Bulvasaur ✅
+        - Squirtle ✅
+        - Sandshrew ✅
+        - Mankey ✅
+        - Arbok ✅
+        - Pidgeotto ✅
+        - Koffing ✅
+        - Alakazam
+        - Machoke
+        - Cubone
+        - Onix
+        - Mr. Mime
+        - Flareon
+        - Vaporeon
+        - Jolteon
+        - Snorlax
+        - Aerodactyl
+        - Dragonite
+        - Tyranitar
+        - Articuno
+        - Zapdos
+        - Moltres
+        - MewTwo
+        - Mew
+
+
+
+
+#DIA 1:
+
+    DONE Hacer aparecer pokemon aleatorios.
+    ☐ Poner 2 en la posicion donde aparece el pokemon.
+    ☐ Cambiar imagen cuando el personaje interactua con un pokemon.
+
+
+#DIA 2:
+    
