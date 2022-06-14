@@ -1,162 +1,87 @@
-const canvas = document.querySelector("#canvas");
-const ctx = canvas.getContext("2d");
+let game = new Game();
+const ctx = game.startGame();
 
-const backgroundImage = new Image();
-backgroundImage.src = "./src/map.png";
-
-const dragoniteImage = new Image();
-dragoniteImage.src = "./src/imagenes_pokemon/charmander_tile.png";
+const backgroundImage = game.createMap();
 
 const battleBackground = new Image();
 battleBackground.src = "../src/battleBaclground.png";
+const attackBar = new Image();
+attackBar.src = "../src/attack_bar.png";
+const attackBarBattle = new Image();
+attackBarBattle.src = "../src/attack_bar_battle.png";
+const pokeWin = new Image();
+pokeWin.src = "../src/pokeWin.png";
+
 
 let map = new Mapa();
 let player = new Player(map.matrixCollisions);
-let pokemon = new Pokemon(19*32, 8*32, map.matrixCollisions);
+let pokeball;
 
 
-let initialPlayer = 2;
-let pokemonEnemy = 0;
+let initialPlayer = 0;
 
-let playerUI, enemyUI;
-let initialPoke, enemy;
+let playerUI, enemyUI, poke;
+let initialPoke, enemy, pokeEnemy;
 
-switch(initialPlayer) {
-    case 0:
-        playerUI = new Image();
-        playerUI.src = "../src/UI_player/charmander_UI_live3.png";
-        initialPoke = new Image();
-        initialPoke.src = "../src/charmander_back.png";
-        break;
-
-    case 1:
-        playerUI = new Image();
-        playerUI.src = "../src/UI_player/bulbasaur_UI_live3.png";
-        console.log("entra");
-        initialPoke = new Image();
-        initialPoke.src = "../src/bulbasaur_back.png";
-        break;
-
-    case 2:
-        playerUI = new Image();
-        playerUI.src = "../src/UI_player/squirtle_UI_live3.png";
-        initialPoke = new Image();
-        initialPoke.src = "../src/squirtle_back.png";
-        break;
-
-}
-
-switch(pokemonEnemy) {
-    case 0:
-        enemyUI = new Image();
-        enemyUI.src = "../src/UI_enemys/snorlax_UI_live3.png";
-        enemy = new Image();
-        enemy.src = "../src/enemys/snorlax_enemy.png";
-        break;
-
-    case 1:
-        enemyUI = new Image();
-        enemyUI.src = "../src/UI_enemy/";
-        enemy = new Image();
-        enemy.src = "../src/";
-        break;
-
-    case 2:
-        enemyUI = new Image();
-        enemyUI.src = "../src/UI_enemy/";
-        enemy = new Image();
-        enemy.src = "../src/";
-        break;
-    
-    case 3:
-        enemyUI = new Image();
-        enemyUI.src = "../src/UI_enemy/";
-        enemy = new Image();
-        enemy.src = "../src/";
-        break;
-
-    case 4:
-        enemyUI = new Image();
-        enemyUI.src = "../src/UI_enemy/";
-        enemy = new Image();
-        enemy.src = "../src/";
-        break;
-
-    case 5:
-        enemyUI = new Image();
-        enemyUI.src = "../src/UI_enemy/";
-        enemy = new Image();
-        enemy.src = "../src/";
-        break;
-    
-    case 6:
-        enemyUI = new Image();
-        enemyUI.src = "../src/UI_enemy/";
-        enemy = new Image();
-        enemy.src = "../src/";
-        break;
-
-    case 7:
-        enemyUI = new Image();
-        enemyUI.src = "../src/UI_enemy/";
-        enemy = new Image();
-        enemy.src = "../src/";
-        break;
-
-}
-
+player.initialPokemon(initialPlayer);
 
 let canSpawn = false;
 let isBattle = false;
 let musicBattle = false;
 let audioRoute = false;
+let gameOver = false;
+let startBattle = false;
+let isPokeball = false;
 
 function loop() {
 
-    if(!audioRoute) {
-        //let audio = document.getElementById("audioRuta");
-        //audio.play();
-        audioRoute = true;
-    }
-
     if(!isBattle) {
+
         ctx.clearRect(0, 0, canvas.width, canvas.height);
         ctx.drawImage(backgroundImage, 0, 0, backgroundImage.width, backgroundImage.height);
+        ctx.drawImage(attackBar, 0, 640, attackBar.width, attackBar.height);
+        player.drawPokeWins(pokeWin);
 
         player.drawPlayer();
 
+        if(!isPokeball) {
+            pokeball = new Pokeball(19*32, 8*32, map.matrixCollisions);
+            isPokeball = true;
+        }
+
         if(canSpawn === false) {
-            pokemon.spawnRandomPokemon();
+            pokeball.spawnRandomPokeball();
             canSpawn = true;
         } 
         if(canSpawn === true) {
-            pokemon.drawPokemon();
+            pokeball.drawPokeball();
         }
 
 
         if(map.matrixCollisions[player.posY/32][player.posX/32] === 2){
             canSpawn = false;
             map.matrixCollisions[player.posY/32][player.posX/32] = 0;
-            pokemon.clearPokemon();
+            pokeball.clearPokeball();
             isBattle = true;
         } 
     }
 
     if(isBattle) {
-        //audio.stop();
-    
-        //if(!musicBattle) {
-            //let audio = document.getElementById("audioBattle");
-            //audio.play();
-        //}
-        ctx.clearRect(0, 0, canvas.width, canvas.height);
-        ctx.drawImage(battleBackground, 0, 0, battleBackground.width, battleBackground.height);
-        ctx.drawImage(enemyUI, 2*32, 1*32, enemyUI.width, enemyUI.height);
-        ctx.drawImage(playerUI, 24*32, 14*32, playerUI.width, playerUI.height);
-        ctx.drawImage(enemy, 24*32, 1*32, enemy.width, enemy.height);
-        ctx.drawImage(initialPoke, 3*32, 10*32, initialPoke.width, initialPoke.height);
-        musicBattle = true;
         
+        if(!startBattle) {
+            poke = new Pokemon();
+            let battleWin = false;
+            pokeEnemy = poke.setRandomBattle();
+            poke.setBattle(pokeEnemy);
+            console.log(enemy);
+            game.battle(canvas, battleBackground, enemyUI, playerUI, enemy, initialPoke, attackBarBattle);
+            startBattle = true;
+        }
+        
+        if(startBattle) {
+            poke.setLive(enemyUI, pokeEnemy);
+            game.battle(canvas, battleBackground, enemyUI, playerUI, enemy, initialPoke, attackBarBattle);
+        }
     }
     
     requestAnimationFrame(loop);

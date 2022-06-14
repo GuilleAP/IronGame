@@ -3,6 +3,9 @@ class Player {
         this.posX = 928;
         this.posY = 352;
         
+        this.live = 100;
+
+        this.pokeWins = 1;
 
         let image = new Image();
         image.src = "../src/imagenes_ash/ash_abajo.png";
@@ -91,6 +94,49 @@ class Player {
     
     }
 
-    
+    initialPokemon(initial) {
+        switch(initial) {
+            case 0:
+                playerUI = new Image();
+                playerUI.src = "../src/UI_player/charmander_UI_live3.png";
+                initialPoke = new Image();
+                initialPoke.src = "../src/charmander_back.png";
+                break;
+        
+            case 1:
+                playerUI = new Image();
+                playerUI.src = "../src/UI_player/bulbasaur_UI_live3.png";
+                console.log("entra");
+                initialPoke = new Image();
+                initialPoke.src = "../src/bulbasaur_back.png";
+                break;
+        
+            case 2:
+                playerUI = new Image();
+                playerUI.src = "../src/UI_player/squirtle_UI_live3.png";
+                initialPoke = new Image();
+                initialPoke.src = "../src/squirtle_back.png";
+                break;
+        
+        }
+    }
+
+    drawPokeWins(pokeWin) {
+        for(let i = 1; i < this.pokeWins + 1; i++) {
+            ctx.drawImage(pokeWin, 1280 - (70 * i), 5, pokeWin.width, pokeWin.height);
+        }
+    }
+
+    winGame() {
+        if(this.pokeWins === 6) {
+            //Ecena win
+        }
+    }
+
+    gameOver() {
+        if(this.live < 0) {
+            //Escena game over
+        }
+    }
     
 };

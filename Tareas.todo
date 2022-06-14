@@ -5,14 +5,14 @@
     DONE Imagen de ash mida optima.
 
 #FIN DE SEMANA:
-    ☐ Obtener imagenes de pokemons 32x32.
-        - Snorlax
-        - Dragonite
-        - Tyranitar
-        - Articuno
-        - Zapdos
-        - Moltres
-        - MewTwo
+    DONE Obtener imagenes de pokemons 32x32.
+        - Snorlax --> P(5/20) 25%
+        - Dragonite --> P(4/20) 20%
+        - Tyranitar --> P(4/20) 20%
+        - Articuno --> P(2/20) 10%
+        - Zapdos --> P(2/20) 10%
+        - Moltres --> P(2/20) 10%
+        - MewTwo --> P(1/20) 5%
 
 #DIA 1:
 
@@ -20,7 +20,10 @@
     DONE Poner 2 en la posicion donde aparece el pokemon.
     DONE Cambiar imagen cuando el personaje interactua con un pokemon.
     DONE Crear Sprites pokemon enemigo.
-    ☐ Imagenes pokemon enemigo.
+    
 
 #DIA 2:
-    
+    DONE Imagenes pokemon enemigo.
+    DONE Aparezer pokemon random.
+    ☐ Combate por turnos.
+
