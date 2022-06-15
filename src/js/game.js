@@ -48,4 +48,19 @@ class Game {
         ctx.drawImage(attackBarBattle, 0, 640, attackBarBattle.width, attackBarBattle.height);
     }
 
+    gameOver(player) {
+
+        let image = new Image();
+        image.src = "./source/game_over.png";
+
+        ctx.drawImage(image, 0, 0, image.width, image.height);
+
+        for(let i = 0; i < player.pokemons.length; i++) {
+            if(player.pokemons[i] === true) {
+                let pokemon = new Image();
+                pokemon.src = `./source/enemys/${i}.png`;
+                ctx.drawImage(pokemon, (i+1) * 32 + 500 , 10*32, 100, 100);
+            }
+        }
+    }
 };

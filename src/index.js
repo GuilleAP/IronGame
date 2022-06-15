@@ -1,3 +1,6 @@
+let initial = document.querySelector(".bulbasaur");
+console.log(initial);
+
 let game = new Game();
 const ctx = game.startGame();
 
@@ -14,6 +17,10 @@ pokeWin.src = "./source/pokeWin.png";
 
 let audioFail = new Audio("./source/sound/fail_sound.mp3");
 let audioHit = new Audio("./source/sound/hit_sound.mp3");
+let audioRuta = new Audio("./source/sound/route_audio.mp3");
+let audioBattle = new Audio("./source/sound/battle_audio.mp3");
+let audioFinal = new Audio("./source/sound/pokemon_theme.mp3");
+let audioEnding = new Audio("./source/sound/ending_theme.mp3");
 
 
 
@@ -41,129 +48,149 @@ let music = true;
 let turno = 0;
 let frameCounterPokemon;
 let playerAttack = false;
+let win = false;
+
 
 function loop() {
 
+    if(gameOver) {
+        audioBattle.pause();
+        audioFinal.play()
+        game.gameOver(player);
 
-    if(!isBattle) {
+    } else if(win) {
 
-        if(music) {
-            game.playMusicRoute();
-            music = false;
+        audioBattle.pause();
+        audioEnding.play();
+        let imageWin = new Image();
+        imageWin.src = "./source/final_game.png";
+
+        ctx.drawImage(imageWin, 0, 0, imageWin.width, imageWin.height);
+
+    } else {
+    
+        if(!isBattle) {
+            audioBattle.pause()
+            audioRuta.play();
+
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            ctx.drawImage(backgroundImage, 0, 0, backgroundImage.width, backgroundImage.height);
+            ctx.drawImage(attackBar, 0, 640, attackBar.width, attackBar.height);
+            player.drawPokeWins(pokeWin);
+
+            player.drawPlayer();
+
+            if(!isPokeball) {
+                pokeball = new Pokeball(19*32, 8*32, map.matrixCollisions);
+                isPokeball = true;
+            }
+
+            if(canSpawn === false) {
+                pokeball.spawnRandomPokeball();
+                canSpawn = true;
+            } 
+            if(canSpawn === true) {
+                pokeball.drawPokeball();
+            }
+
+
+            if(map.matrixCollisions[player.posY/32][player.posX/32] === 2){
+                canSpawn = false;
+                map.matrixCollisions[player.posY/32][player.posX/32] = 0;
+                pokeball.clearPokeball();
+                isBattle = true;
+            } 
+
+            if(player.checkWin()) {
+                win = true;
+            }
         }
 
-        ctx.clearRect(0, 0, canvas.width, canvas.height);
-        ctx.drawImage(backgroundImage, 0, 0, backgroundImage.width, backgroundImage.height);
-        ctx.drawImage(attackBar, 0, 640, attackBar.width, attackBar.height);
-        player.drawPokeWins(pokeWin);
+        if(isBattle) {
 
-        player.drawPlayer();
-
-        if(!isPokeball) {
-            pokeball = new Pokeball(19*32, 8*32, map.matrixCollisions);
-            isPokeball = true;
-        }
-
-        if(canSpawn === false) {
-            pokeball.spawnRandomPokeball();
-            canSpawn = true;
-        } 
-        if(canSpawn === true) {
-            pokeball.drawPokeball();
-        }
-
-
-        if(map.matrixCollisions[player.posY/32][player.posX/32] === 2){
-            canSpawn = false;
-            map.matrixCollisions[player.posY/32][player.posX/32] = 0;
-            pokeball.clearPokeball();
-            isBattle = true;
-        } 
-
-        if(player.checkWin()) {
-            //PANTALLA WIN!!
-        }
-    }
-
-    if(isBattle) {
-
-        if(!music) {
-            game.playMusicBattle();
-            music = true;
-        }
-        
-        if(!startBattle) {
-            poke = new Pokemon();
-            let battleWin = false;
-            pokeEnemy = poke.setRandomBattle();
-            poke.setBattle(pokeEnemy);
-            console.log(enemy);
-            game.battle(canvas, battleBackground, enemyUI, playerUI, enemy, initialPoke, attackBarBattle);
-            startBattle = true;
-            frameCounterPokemon = 0;
-        }
-        
-        if(startBattle) {
-            poke.setLive(enemyUI, pokeEnemy);
-            game.battle(canvas, battleBackground, enemyUI, playerUI, enemy, initialPoke, attackBarBattle);
-
-            if(turno === 0) {  
-
-                if(player.playerAttack) {
-                    if(player.makeAttack()) {
-                        poke.live -= 34;
-                        audioHit.play();
-                    } else {
-                        audioFail.play();
-                    }
-
-                    poke.setLive(enemyUI, pokeEnemy);
-
-                    if(poke.pokeDies()) {
-                        if(!player.checkPokemonExist(poke.pokeNumber)) {
-                            player.getPokemons(poke.pokeNumber);
-                            player.pokeWins++;
-                        }
-                        
-                        playerUI.src = `./source/UI_player/${initialPlayer}_UI_live3.png`
-
-                        isBattle = false;
-                        startBattle = false;
-                        turno = 0;
-                    } else {
-                        turno = 1;
-                    }
-
-                    player.playerAttack = false;
-
-                } else {
-                    turno = 0;
-                }
-
+            audioRuta.pause()
+            audioBattle.play()
+            
+            if(!startBattle) {
+                poke = new Pokemon();
+                let battleWin = false;
+                pokeEnemy = poke.setRandomBattle();
+                poke.setBattle(pokeEnemy);
+                console.log(enemy);
+                game.battle(canvas, battleBackground, enemyUI, playerUI, enemy, initialPoke, attackBarBattle);
+                startBattle = true;
+                frameCounterPokemon = 0;
             }
             
-            if(turno === 1) {
-                    
-                if(frameCounterPokemon === 150) {
-                    if(poke.makeAttack()) {
-                        player.live -= 34;
-                        audioHit.play();
+            if(startBattle) {
+                poke.setLive(enemyUI, pokeEnemy);
+                game.battle(canvas, battleBackground, enemyUI, playerUI, enemy, initialPoke, attackBarBattle);
+
+                if(turno === 0) {  
+
+                    if(player.playerAttack) {
+                        if(player.makeAttack()) {
+                            poke.live -= 34;
+                            audioHit.play();
+                        } else {
+                            audioFail.play();
+                        }
+
+                        poke.setLive(enemyUI, pokeEnemy);
+
+                        if(poke.pokeDies()) {
+                            if(!player.checkPokemonExist(poke.pokeNumber)) {
+                                player.getPokemons(poke.pokeNumber);
+                                player.pokeWins++;
+                            }
+
+                            if(player.pokeWins === 6) {
+                                win = true;
+                            }
+                            
+                            playerUI.src = `./source/UI_player/${initialPlayer}_UI_live3.png`
+                            player.live = 100;
+
+                            isBattle = false;
+                            startBattle = false;
+                            turno = 0;
+                        } else {
+                            turno = 1;
+                        }
+
+                        player.playerAttack = false;
+
                     } else {
-                        audioFail.play();
+                        turno = 0;
                     }
 
-                    player.setLive(playerUI, initialPlayer);
-
-                    if(player.playerDies()) {
-                        //PANTALLA DE GAME OVER
-                    }
-
-                    turno = 0;
-                    frameCounterPokemon = 0;
                 }
-                frameCounterPokemon += 1;
+                
+                if(turno === 1) {
+                        
+                    if(frameCounterPokemon === 150) {
+                        if(poke.makeAttack()) {
+                            player.live -= 34;
+                            audioHit.play();
+                        } else {
+                            audioFail.play();
+                        }
+
+                        player.setLive(playerUI, initialPlayer);
+
+                        if(player.playerDies()) {
+                            gameOver = true;
+                        }
+
+                        turno = 0;
+                        frameCounterPokemon = 0;
+                    }
+                    frameCounterPokemon += 1;
+                }
+
             }
 
+        
         }
     }
     

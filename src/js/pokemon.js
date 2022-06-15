@@ -19,7 +19,7 @@ class Pokemon {
                 enemyUI = new Image();
                 enemyUI.src = "./source/UI_enemys/0_UI_live3.png";
                 enemy = new Image();
-                enemy.src = "./source/enemys/articuno_enemy.png";
+                enemy.src = "./source/enemys/0.png";
                 this.pokeNumber = 0;
                 break;
         
@@ -27,7 +27,7 @@ class Pokemon {
                 enemyUI = new Image();
                 enemyUI.src = "./source/UI_enemys/1_UI_live3.png";
                 enemy = new Image();
-                enemy.src = "./source/enemys/zapdos_enemy.png";
+                enemy.src = "./source/enemys/1.png";
                 this.pokeNumber = 1;
                 break;
         
@@ -35,7 +35,7 @@ class Pokemon {
                 enemyUI = new Image();
                 enemyUI.src = "./source/UI_enemys/2_UI_live3.png";
                 enemy = new Image();
-                enemy.src = "./source/enemys/moltres_enemy.png";
+                enemy.src = "./source/enemys/2.png";
                 this.pokeNumber = 2;
                 break;
             
@@ -43,7 +43,7 @@ class Pokemon {
                 enemyUI = new Image();
                 enemyUI.src = "./source/UI_enemys/3_UI_live3.png";
                 enemy = new Image();
-                enemy.src = "./source/enemys/dragonite_enemy.png";
+                enemy.src = "./source/enemys/3.png";
                 this.pokeNumber = 3;
                 break;
         
@@ -51,7 +51,7 @@ class Pokemon {
                 enemyUI = new Image();
                 enemyUI.src = "./source/UI_enemys/4_UI_live3.png";
                 enemy = new Image();
-                enemy.src = "./source/enemys/tyranitar_enemy.png";
+                enemy.src = "./source/enemys/4.png";
                 this.pokeNumber = 4;
                 break;
         
@@ -59,7 +59,7 @@ class Pokemon {
                 enemyUI = new Image();
                 enemyUI.src = "./source/UI_enemys/5_UI_live3.png";
                 enemy = new Image();
-                enemy.src = "./source/enemys/snorlax_enemy.png";
+                enemy.src = "./source/enemys/5.png";
                 this.pokeNumber = 5;
                 break;
             
@@ -67,7 +67,7 @@ class Pokemon {
                 enemyUI = new Image();
                 enemyUI.src = "./source/UI_enemys/6_UI_live3.png";
                 enemy = new Image();
-                enemy.src = "./source/enemys/mewtwo_enemy.png";
+                enemy.src = "./source/enemys/6.png";
                 this.pokeNumber = 6;
                 break;
         }
