@@ -172,10 +172,10 @@ class Player {
     }
 
     makeAttack() {
-        let attack = Math.round(Math.random() * 1 + 0);
-        this.attack = false;
+        let attackArray = [1, 0, 1, 1, 0, 1, 0, 1, 0, 1];
+        let attack = Math.round(Math.random() * attackArray.length + 0);
 
-        if(attack === 0) {
+        if(attackArray[attack] === 0) {
             console.log("Player ha fallado");
             return false;
         } else {

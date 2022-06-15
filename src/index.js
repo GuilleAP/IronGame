@@ -130,9 +130,10 @@ function loop() {
                         isBattle = false;
                         startBattle = false;
                         turno = 0;
+                    } else {
+                        turno = 1;
                     }
 
-                    turno = 1;
                     player.playerAttack = false;
 
                 } else {
@@ -143,7 +144,7 @@ function loop() {
             
             if(turno === 1) {
                     
-                if(frameCounterPokemon === 200) {
+                if(frameCounterPokemon === 150) {
                     if(poke.makeAttack()) {
                         player.live -= 34;
                         audioHit.play();
@@ -167,6 +168,7 @@ function loop() {
     }
     
     requestAnimationFrame(loop);
+    console.log(turno);
 }
     
 

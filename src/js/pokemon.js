@@ -89,9 +89,10 @@ class Pokemon {
     }
 
     makeAttack() {
-        let attack = Math.round(Math.random() * 1 + 0);
+        let attackArray = [0, 0, 0, 1, 0, 1, 0, 1, 0, 0];
+        let attack = Math.round(Math.random() * attackArray.length + 0);
 
-        if(attack === 0) {
+        if(attackArray[attack] === 0) {
             console.log("pokemon ha fallado");
             return false;
         } else {
