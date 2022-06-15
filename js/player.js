@@ -15,6 +15,10 @@ class Player {
         this.heigth = image.height;
 
         this.matrix = matrix;
+
+        this.pokemons = [false, false, false, false, false, false, false];
+
+        this.attack = false;
     }
 
     drawPlayer() {
@@ -28,6 +32,7 @@ class Player {
     nextPossiblePos(direction) {
         let x = this.posY / 32;
         let y = this.posX / 32;
+
         switch(direction) {
             case 'arriba':
                 if(this.matrix[x - 1][y] == 1) {
@@ -124,6 +129,47 @@ class Player {
     drawPokeWins(pokeWin) {
         for(let i = 1; i < this.pokeWins + 1; i++) {
             ctx.drawImage(pokeWin, 1280 - (70 * i), 5, pokeWin.width, pokeWin.height);
+        }
+    }
+
+    getPokemons(pokemon) {
+        this.pokemons[pokemon] = true;
+    }
+
+    checkAllPokemons() {
+        
+        for(let i = 0; i < this.pokemons.length; i++) {
+            if(this.pokemons[i] === false) {
+                return false;
+            }
+        }
+
+        return true;
+    }
+
+    doAttack(e) {
+        if(e.x > 40 && e.x < 325 && e.y > 665 && e.y < 690 ||
+           e.x > 345 && e.x < 632 && e.y > 665 && e.y < 690 ||
+           e.x > 650 && e.x < 940 && e.y > 665 && e.y < 690 ||
+           e.x > 970 && e.x < 1250 && e.y > 665 && e.y < 690) {
+            console.log("Player puede atacar");
+            return true;
+
+        } else {
+            return false;
+        }
+        
+    }
+
+    makeAttack() {
+        let attack = Math.floor(Math.random() * 1 + 0);
+
+        if(attack === 0) {
+            console.log("player ha fallado");
+            return false;
+        } else {
+            console.log("Player ha atacado");
+            return true;
         }
     }
 

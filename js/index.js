@@ -32,10 +32,19 @@ let audioRoute = false;
 let gameOver = false;
 let startBattle = false;
 let isPokeball = false;
+let music = true;
+let turno = 0;
+let frameCounter;
 
 function loop() {
 
+
     if(!isBattle) {
+
+        if(music) {
+            game.playMusicRoute();
+            music = false;
+        }
 
         ctx.clearRect(0, 0, canvas.width, canvas.height);
         ctx.drawImage(backgroundImage, 0, 0, backgroundImage.width, backgroundImage.height);
@@ -67,6 +76,11 @@ function loop() {
     }
 
     if(isBattle) {
+
+        if(!music) {
+            game.playMusicBattle();
+            music = true;
+        }
         
         if(!startBattle) {
             poke = new Pokemon();
@@ -76,11 +90,33 @@ function loop() {
             console.log(enemy);
             game.battle(canvas, battleBackground, enemyUI, playerUI, enemy, initialPoke, attackBarBattle);
             startBattle = true;
+            frameCounter = 0;
         }
         
         if(startBattle) {
             poke.setLive(enemyUI, pokeEnemy);
             game.battle(canvas, battleBackground, enemyUI, playerUI, enemy, initialPoke, attackBarBattle);
+
+            if(turno === 0) {   
+                //if(//player.doAttack() === true) {
+                    player.makeAttack();
+                    turno = 1;
+                //}
+
+            }
+            
+            if(turno === 1) {
+                    
+                if(frameCounter === 200) {
+                    poke.makeAttack()
+                    turno = 0;
+                    console.log("Ataca!!!")
+                    frameCounter = 0;
+                }
+                frameCounter += 1;
+                //setInterval(console.log("Ataca el pokemon!!"), 10000);
+            }
+
         }
     }
     
@@ -92,7 +128,12 @@ function move(e) {
     player.movePlayer(e);
 }
 
+function attack(e) {
+    player.doAttack(e);
+}
+
 addEventListener("keypress", move);
+addEventListener("click", attack)
 
 loop();
 

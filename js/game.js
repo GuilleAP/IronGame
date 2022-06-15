@@ -1,4 +1,9 @@
 class Game {
+    constructor() {
+        this.musicRuta = document.getElementById("audioRuta");
+        this.musicBattle = document.getElementById("audioBattle");
+        this.musicRuta.pause();
+    }
 
     startGame() {
         const canvas = document.querySelector("#canvas");
@@ -13,6 +18,24 @@ class Game {
 
     createplayer() {
         return new Player()
+    }
+
+    playMusicRoute() {
+        this.musicRuta.play();
+        this.musicBattle.pause();
+    }
+
+    pauseMusicRoute() {
+        this.musicRuta.pause();
+    }
+
+    playMusicBattle() {
+        this.musicRuta.pause();
+        this.musicBattle.play();
+    }
+
+    pauseMusicBattle() {
+        this.musicBattle.pause();
     }
 
     battle(canvas, battleBackground, enemyUI, playerUI, enemy, initialPoke, attackBarBattle) {

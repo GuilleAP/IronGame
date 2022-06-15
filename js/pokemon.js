@@ -79,4 +79,16 @@ class Pokemon {
             enemyUI.src = `../src/UI_enemys/${pokemonEnemy}_UI_live1.png`;
         }
     }
+
+    makeAttack() {
+        let attack = Math.floor(Math.random() * 1 + 0);
+
+        if(attack === 0) {
+            console.log("pokemon ha fallado");
+            return false;
+        } else {
+            console.log("pokemon ha atacado");
+            return true;
+        }
+    }
 }

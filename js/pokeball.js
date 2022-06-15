@@ -28,11 +28,8 @@ class Pokeball {
         }
         this.posX = positionRandom[0];
         this.posY = positionRandom[1];
-
-        console.log(this.posX)
-
+        
         this.pokeball = Math.floor(Math.random() * 5 + 0);
-        console.log(map.matrixCollisions[this.posX][this.posY]);
         map.matrixCollisions[this.posX][this.posY] = 2;
     }
 }
