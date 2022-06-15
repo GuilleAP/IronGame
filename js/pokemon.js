@@ -3,6 +3,7 @@ class Pokemon {
         this.pokemonInGame = false;
         this.pokeball;
         this.live = 100;
+        this.pokeNumber;
     }
 
     setRandomBattle() {
@@ -19,6 +20,7 @@ class Pokemon {
                 enemyUI.src = "../src/UI_enemys/0_UI_live3.png";
                 enemy = new Image();
                 enemy.src = "../src/enemys/articuno_enemy.png";
+                this.pokeNumber = 0;
                 break;
         
             case 1:
@@ -26,6 +28,7 @@ class Pokemon {
                 enemyUI.src = "../src/UI_enemys/1_UI_live3.png";
                 enemy = new Image();
                 enemy.src = "../src/enemys/zapdos_enemy.png";
+                this.pokeNumber = 1;
                 break;
         
             case 2:
@@ -33,6 +36,7 @@ class Pokemon {
                 enemyUI.src = "../src/UI_enemys/2_UI_live3.png";
                 enemy = new Image();
                 enemy.src = "../src/enemys/moltres_enemy.png";
+                this.pokeNumber = 2;
                 break;
             
             case 3:
@@ -40,6 +44,7 @@ class Pokemon {
                 enemyUI.src = "../src/UI_enemys/3_UI_live3.png";
                 enemy = new Image();
                 enemy.src = "../src/enemys/dragonite_enemy.png";
+                this.pokeNumber = 3;
                 break;
         
             case 4:
@@ -47,6 +52,7 @@ class Pokemon {
                 enemyUI.src = "../src/UI_enemys/4_UI_live3.png";
                 enemy = new Image();
                 enemy.src = "../src/enemys/tyranitar_enemy.png";
+                this.pokeNumber = 4;
                 break;
         
             case 5:
@@ -54,6 +60,7 @@ class Pokemon {
                 enemyUI.src = "../src/UI_enemys/5_UI_live3.png";
                 enemy = new Image();
                 enemy.src = "../src/enemys/snorlax_enemy.png";
+                this.pokeNumber = 5;
                 break;
             
             case 6:
@@ -61,6 +68,7 @@ class Pokemon {
                 enemyUI.src = "../src/UI_enemys/6_UI_live3.png";
                 enemy = new Image();
                 enemy.src = "../src/enemys/mewtwo_enemy.png";
+                this.pokeNumber = 6;
                 break;
         }
     }

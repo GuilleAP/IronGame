@@ -103,22 +103,21 @@ class Player {
         switch(initial) {
             case 0:
                 playerUI = new Image();
-                playerUI.src = "../src/UI_player/charmander_UI_live3.png";
-                initialPoke = new Image();
-                initialPoke.src = "../src/charmander_back.png";
-                break;
-        
-            case 1:
-                playerUI = new Image();
-                playerUI.src = "../src/UI_player/bulbasaur_UI_live3.png";
-                console.log("entra");
+                playerUI.src = "../src/UI_player/0_UI_live3.png";
                 initialPoke = new Image();
                 initialPoke.src = "../src/bulbasaur_back.png";
                 break;
         
+            case 1:
+                playerUI = new Image();
+                playerUI.src = "../src/UI_player/1_UI_live3.png";
+                initialPoke = new Image();
+                initialPoke.src = "../src/charmander_back.png";
+                break;
+        
             case 2:
                 playerUI = new Image();
-                playerUI.src = "../src/UI_player/squirtle_UI_live3.png";
+                playerUI.src = "../src/UI_player/2_UI_live3.png";
                 initialPoke = new Image();
                 initialPoke.src = "../src/squirtle_back.png";
                 break;
@@ -130,6 +129,14 @@ class Player {
         for(let i = 1; i < this.pokeWins + 1; i++) {
             ctx.drawImage(pokeWin, 1280 - (70 * i), 5, pokeWin.width, pokeWin.height);
         }
+    }
+
+    checkPokemonExist(pokemon) {
+        if(this.pokemons[pokemon] === true) {
+            return true;
+        }
+
+        return false;
     }
 
     getPokemons(pokemon) {
@@ -178,20 +185,29 @@ class Player {
         
     }
 
-    getAttackPlayer() {
-        return this.playerAttack;
+    setLive(playerUI, player) {
+        if(this.live < 100 && this.live >= 66) {
+            playerUI.src = `../src/UI_player/${player}_UI_live2.png`;
+        } else if(this.live < 66 && this.live >= 32) {
+            playerUI.src = `../src/UI_player/${player}_UI_live1.png`;
+        }
     }
 
-    winGame() {
+    playerDies() {
+        if(this.live > 0) {
+            return false;
+        }
+
+        return true;
+    }
+
+    checkWin() {
         if(this.pokeWins === 6) {
-            //Escena win
+            return true;
         }
+
+        return false;
     }
 
-    gameOver() {
-        if(this.live < 0) {
-            //Escena game over
-        }
-    }
     
 };

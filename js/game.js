@@ -2,7 +2,7 @@ class Game {
     constructor() {
         this.musicRuta = document.getElementById("audioRuta");
         this.musicBattle = document.getElementById("audioBattle");
-        this.musicRuta.pause();
+        //this.musicRuta.pause();
     }
 
     startGame() {

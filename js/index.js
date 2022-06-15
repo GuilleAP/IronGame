@@ -12,6 +12,9 @@ attackBarBattle.src = "../src/attack_bar_battle.png";
 const pokeWin = new Image();
 pokeWin.src = "../src/pokeWin.png";
 
+let audioFail = new Audio("../src/sound/fail_sound.mp3");
+let audioHit = new Audio("../src/sound/hit_sound.mp3");
+
 
 
 
@@ -20,7 +23,7 @@ let player = new Player(map.matrixCollisions);
 let pokeball;
 
 
-let initialPlayer = 0;
+let initialPlayer = 1;
 
 let playerUI, enemyUI, poke;
 let initialPoke, enemy, pokeEnemy;
@@ -36,7 +39,7 @@ let startBattle = false;
 let isPokeball = false;
 let music = true;
 let turno = 0;
-let frameCounter;
+let frameCounterPokemon;
 let playerAttack = false;
 
 function loop() {
@@ -76,6 +79,10 @@ function loop() {
             pokeball.clearPokeball();
             isBattle = true;
         } 
+
+        if(player.checkWin()) {
+            //PANTALLA WIN!!
+        }
     }
 
     if(isBattle) {
@@ -93,7 +100,7 @@ function loop() {
             console.log(enemy);
             game.battle(canvas, battleBackground, enemyUI, playerUI, enemy, initialPoke, attackBarBattle);
             startBattle = true;
-            frameCounter = 0;
+            frameCounterPokemon = 0;
         }
         
         if(startBattle) {
@@ -103,19 +110,31 @@ function loop() {
             if(turno === 0) {  
 
                 if(player.playerAttack) {
-                    console.log("entra!!!");
                     if(player.makeAttack()) {
                         poke.live -= 34;
+                        audioHit.play();
+                    } else {
+                        audioFail.play();
                     }
+
                     poke.setLive(enemyUI, pokeEnemy);
+
                     if(poke.pokeDies()) {
+                        if(!player.checkPokemonExist(poke.pokeNumber)) {
+                            player.getPokemons(poke.pokeNumber);
+                            player.pokeWins++;
+                        }
+                        
+                        playerUI.src = `../src/UI_player/${initialPlayer}_UI_live3.png`
+
                         isBattle = false;
                         startBattle = false;
-                        player.pokeWins++;
                         turno = 0;
                     }
+
                     turno = 1;
                     player.playerAttack = false;
+
                 } else {
                     turno = 0;
                 }
@@ -124,12 +143,24 @@ function loop() {
             
             if(turno === 1) {
                     
-                if(frameCounter === 200) {
-                    poke.makeAttack()
+                if(frameCounterPokemon === 200) {
+                    if(poke.makeAttack()) {
+                        player.live -= 34;
+                        audioHit.play();
+                    } else {
+                        audioFail.play();
+                    }
+
+                    player.setLive(playerUI, initialPlayer);
+
+                    if(player.playerDies()) {
+                        //PANTALLA DE GAME OVER
+                    }
+
                     turno = 0;
-                    frameCounter = 0;
+                    frameCounterPokemon = 0;
                 }
-                frameCounter += 1;
+                frameCounterPokemon += 1;
             }
 
         }
