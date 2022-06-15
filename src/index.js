@@ -4,16 +4,16 @@ const ctx = game.startGame();
 const backgroundImage = game.createMap();
 
 const battleBackground = new Image();
-battleBackground.src = "../src/battleBaclground.png";
+battleBackground.src = "./source/battleBaclground.png";
 const attackBar = new Image();
-attackBar.src = "../src/attack_bar.png";
+attackBar.src = "./source/attack_bar.png";
 const attackBarBattle = new Image();
-attackBarBattle.src = "../src/attack_bar_battle.png";
+attackBarBattle.src = "./source/attack_bar_battle.png";
 const pokeWin = new Image();
-pokeWin.src = "../src/pokeWin.png";
+pokeWin.src = "./source/pokeWin.png";
 
-let audioFail = new Audio("../src/sound/fail_sound.mp3");
-let audioHit = new Audio("../src/sound/hit_sound.mp3");
+let audioFail = new Audio("./source/sound/fail_sound.mp3");
+let audioHit = new Audio("./source/sound/hit_sound.mp3");
 
 
 
@@ -125,7 +125,7 @@ function loop() {
                             player.pokeWins++;
                         }
                         
-                        playerUI.src = `../src/UI_player/${initialPlayer}_UI_live3.png`
+                        playerUI.src = `./source/UI_player/${initialPlayer}_UI_live3.png`
 
                         isBattle = false;
                         startBattle = false;

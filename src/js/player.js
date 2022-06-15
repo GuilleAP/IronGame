@@ -8,7 +8,7 @@ class Player {
         this.pokeWins = 0;
 
         let image = new Image();
-        image.src = "../src/imagenes_ash/ash_abajo.png";
+        image.src = "./source/imagenes_ash/ash_abajo.png";
         this.image = image;
 
         this.width = image.width;
@@ -67,28 +67,28 @@ class Player {
     movePlayer(event) {
         switch(event.key) {
             case 'w':
-                this.image.src = './src/imagenes_ash/ash_arriba.png';
+                this.image.src = './source/imagenes_ash/ash_arriba.png';
                 if(this.nextPossiblePos('arriba')) {
                     this.posY -= 32;
                 }
                 break;
     
             case 's':
-                this.image.src = './src/imagenes_ash/ash_abajo.png';
+                this.image.src = './source/imagenes_ash/ash_abajo.png';
                 if(this.nextPossiblePos('abajo')) {
                     this.posY += 32;
                 }
                 break;
     
             case 'a':
-                this.image.src = './src/imagenes_ash/ash_izquierda.png';
+                this.image.src = './source/imagenes_ash/ash_izquierda.png';
                 if(this.nextPossiblePos('izquierda')) {
                     this.posX -= 32;
                 }
                 break;
     
             case 'd':
-                this.image.src = './src/imagenes_ash/ash_derecha.png';
+                this.image.src = './source/imagenes_ash/ash_derecha.png';
                 if(this.nextPossiblePos('derecha')) {
                     this.posX += 32;
                 }
@@ -103,23 +103,23 @@ class Player {
         switch(initial) {
             case 0:
                 playerUI = new Image();
-                playerUI.src = "../src/UI_player/0_UI_live3.png";
+                playerUI.src = "./source/UI_player/0_UI_live3.png";
                 initialPoke = new Image();
-                initialPoke.src = "../src/bulbasaur_back.png";
+                initialPoke.src = "./source/bulbasaur_back.png";
                 break;
         
             case 1:
                 playerUI = new Image();
-                playerUI.src = "../src/UI_player/1_UI_live3.png";
+                playerUI.src = "./source/UI_player/1_UI_live3.png";
                 initialPoke = new Image();
-                initialPoke.src = "../src/charmander_back.png";
+                initialPoke.src = "./source/charmander_back.png";
                 break;
         
             case 2:
                 playerUI = new Image();
-                playerUI.src = "../src/UI_player/2_UI_live3.png";
+                playerUI.src = "./source/UI_player/2_UI_live3.png";
                 initialPoke = new Image();
-                initialPoke.src = "../src/squirtle_back.png";
+                initialPoke.src = "./source/squirtle_back.png";
                 break;
         
         }
@@ -187,9 +187,9 @@ class Player {
 
     setLive(playerUI, player) {
         if(this.live < 100 && this.live >= 66) {
-            playerUI.src = `../src/UI_player/${player}_UI_live2.png`;
+            playerUI.src = `./source/UI_player/${player}_UI_live2.png`;
         } else if(this.live < 66 && this.live >= 32) {
-            playerUI.src = `../src/UI_player/${player}_UI_live1.png`;
+            playerUI.src = `./source/UI_player/${player}_UI_live1.png`;
         }
     }
 

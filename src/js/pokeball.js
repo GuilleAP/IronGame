@@ -8,7 +8,7 @@ class Pokeball {
 
     drawPokeball() {
         let pokeballImage = new Image();
-        pokeballImage.src = `../src/imagenes_pokeballs/pokeball${this.pokeball}.png`;
+        pokeballImage.src = `./source/imagenes_pokeballs/pokeball${this.pokeball}.png`;
         ctx.drawImage(pokeballImage, this.posY * 32, this.posX * 32, pokeballImage.width, pokeballImage.height);
 
     }

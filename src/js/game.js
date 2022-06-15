@@ -12,7 +12,7 @@ class Game {
 
     createMap() {
         const image = new Image();
-        image.src = "../src/map.png";
+        image.src = "./source/map.png";
         return image;
     }
 
