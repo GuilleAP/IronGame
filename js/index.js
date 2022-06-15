@@ -13,6 +13,8 @@ const pokeWin = new Image();
 pokeWin.src = "../src/pokeWin.png";
 
 
+
+
 let map = new Mapa();
 let player = new Player(map.matrixCollisions);
 let pokeball;
@@ -35,6 +37,7 @@ let isPokeball = false;
 let music = true;
 let turno = 0;
 let frameCounter;
+let playerAttack = false;
 
 function loop() {
 
@@ -97,11 +100,22 @@ function loop() {
             poke.setLive(enemyUI, pokeEnemy);
             game.battle(canvas, battleBackground, enemyUI, playerUI, enemy, initialPoke, attackBarBattle);
 
-            if(turno === 0) {   
-                player.captureEvent();
-                if(player.attack === true) {
-                    player.makeAttack();
+            if(turno === 0) {  
+
+                if(player.playerAttack) {
+                    console.log("entra!!!");
+                    if(player.makeAttack()) {
+                        poke.live -= 34;
+                    }
+                    poke.setLive(enemyUI, pokeEnemy);
+                    if(poke.pokeDies()) {
+                        isBattle = false;
+                        startBattle = false;
+                        player.pokeWins++;
+                        turno = 0;
+                    }
                     turno = 1;
+                    player.playerAttack = false;
                 } else {
                     turno = 0;
                 }
@@ -116,7 +130,6 @@ function loop() {
                     frameCounter = 0;
                 }
                 frameCounter += 1;
-                //setInterval(console.log("Ataca el pokemon!!"), 10000);
             }
 
         }
@@ -135,6 +148,7 @@ function attack(e) {
 }
 
 addEventListener("keypress", move);
+addEventListener("click", attack);
 
 
 loop();

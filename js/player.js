@@ -5,7 +5,7 @@ class Player {
         
         this.live = 100;
 
-        this.pokeWins = 1;
+        this.pokeWins = 0;
 
         let image = new Image();
         image.src = "../src/imagenes_ash/ash_abajo.png";
@@ -18,7 +18,7 @@ class Player {
 
         this.pokemons = [false, false, false, false, false, false, false];
 
-        this.attack = false;
+        this.playerAttack = false;
     }
 
     drawPlayer() {
@@ -147,39 +147,39 @@ class Player {
         return true;
     }
 
-    captureEvent() {
-        addEventListener("click", this.doAttack)
-    }
-
     doAttack(e) {
         if(e !== undefined) {
-        
             if(e.x > 40 && e.x < 325 && e.y > 665 && e.y < 690 ||
             e.x > 345 && e.x < 632 && e.y > 665 && e.y < 690 ||
             e.x > 650 && e.x < 940 && e.y > 665 && e.y < 690 ||
             e.x > 970 && e.x < 1250 && e.y > 665 && e.y < 690) {
-                console.log("Player puede atacar");
-                this.attack = true;
+                this.playerAttack = true;
 
             } else {
-                this.attack = false;
+                this.playerAttack = false;
             }
         } else {
-            this.attack = false;
+            this.playerAttack = false;
         }
-        
+        console.log(this.playerAttack);
     }
 
     makeAttack() {
         let attack = Math.round(Math.random() * 1 + 0);
+        this.attack = false;
 
         if(attack === 0) {
-            console.log("player ha fallado");
+            console.log("Player ha fallado");
             return false;
         } else {
             console.log("Player ha atacado");
             return true;
         }
+        
+    }
+
+    getAttackPlayer() {
+        return this.playerAttack;
     }
 
     winGame() {

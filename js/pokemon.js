@@ -66,16 +66,16 @@ class Pokemon {
     }
 
     pokeDies() {
-        if(this.live <= 0) {
+        if(this.live > 0) {
             return false;
         }
         return true;
     }
 
     setLive(enemyUI, pokemonEnemy) {
-        if(this.live < 100 && this.live > 66) {
+        if(this.live < 100 && this.live >= 66) {
             enemyUI.src = `../src/UI_enemys/${pokemonEnemy}_UI_live2.png`;
-        } else if(this.live < 66 && this.live > 32) {
+        } else if(this.live < 66 && this.live >= 32) {
             enemyUI.src = `../src/UI_enemys/${pokemonEnemy}_UI_live1.png`;
         }
     }
