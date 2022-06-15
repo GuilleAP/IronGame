@@ -81,7 +81,7 @@ class Pokemon {
     }
 
     makeAttack() {
-        let attack = Math.floor(Math.random() * 1 + 0);
+        let attack = Math.round(Math.random() * 1 + 0);
 
         if(attack === 0) {
             console.log("pokemon ha fallado");

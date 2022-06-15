@@ -98,10 +98,13 @@ function loop() {
             game.battle(canvas, battleBackground, enemyUI, playerUI, enemy, initialPoke, attackBarBattle);
 
             if(turno === 0) {   
-                //if(//player.doAttack() === true) {
+                player.captureEvent();
+                if(player.attack === true) {
                     player.makeAttack();
                     turno = 1;
-                //}
+                } else {
+                    turno = 0;
+                }
 
             }
             
@@ -110,7 +113,6 @@ function loop() {
                 if(frameCounter === 200) {
                     poke.makeAttack()
                     turno = 0;
-                    console.log("Ataca!!!")
                     frameCounter = 0;
                 }
                 frameCounter += 1;
@@ -133,7 +135,7 @@ function attack(e) {
 }
 
 addEventListener("keypress", move);
-addEventListener("click", attack)
+
 
 loop();
 

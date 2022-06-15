@@ -147,22 +147,31 @@ class Player {
         return true;
     }
 
-    doAttack(e) {
-        if(e.x > 40 && e.x < 325 && e.y > 665 && e.y < 690 ||
-           e.x > 345 && e.x < 632 && e.y > 665 && e.y < 690 ||
-           e.x > 650 && e.x < 940 && e.y > 665 && e.y < 690 ||
-           e.x > 970 && e.x < 1250 && e.y > 665 && e.y < 690) {
-            console.log("Player puede atacar");
-            return true;
+    captureEvent() {
+        addEventListener("click", this.doAttack)
+    }
 
+    doAttack(e) {
+        if(e !== undefined) {
+        
+            if(e.x > 40 && e.x < 325 && e.y > 665 && e.y < 690 ||
+            e.x > 345 && e.x < 632 && e.y > 665 && e.y < 690 ||
+            e.x > 650 && e.x < 940 && e.y > 665 && e.y < 690 ||
+            e.x > 970 && e.x < 1250 && e.y > 665 && e.y < 690) {
+                console.log("Player puede atacar");
+                this.attack = true;
+
+            } else {
+                this.attack = false;
+            }
         } else {
-            return false;
+            this.attack = false;
         }
         
     }
 
     makeAttack() {
-        let attack = Math.floor(Math.random() * 1 + 0);
+        let attack = Math.round(Math.random() * 1 + 0);
 
         if(attack === 0) {
             console.log("player ha fallado");
@@ -175,7 +184,7 @@ class Player {
 
     winGame() {
         if(this.pokeWins === 6) {
-            //Ecena win
+            //Escena win
         }
     }
 
