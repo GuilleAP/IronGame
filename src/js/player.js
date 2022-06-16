@@ -94,8 +94,6 @@ class Player {
                 }
                 break;
         }
-
-        console.log("PLAYER POSITION - Position X: ", this.posX/32, "POsition y: ", this.posY/32);
     
     }
 

@@ -2,7 +2,9 @@ class Game {
     constructor() {
         this.musicRuta = document.getElementById("audioRuta");
         this.musicBattle = document.getElementById("audioBattle");
-        //this.musicRuta.pause();
+        
+        this.initial;
+        this.start = false;
     }
 
     startGame() {
@@ -64,7 +66,28 @@ class Game {
         }
     }
 
-    choseInitialPokemon() {
-        
+    choseInitialPokemon(e) {
+        if(e !== undefined) {
+            if(e.x > 50 && e.x < 350 && e.y > 200 && e.y < 500) {
+                this.initial = 0;
+                this.start = true;
+    
+            } else if(e.x > 490 && e.x < 790 && e.y > 200 && e.y < 500) {
+                this.initial = 1;
+                this.start = true;
+    
+            } else if(e.x > 930 && e.x < 1230 && e.y > 200 && e.y < 500) {
+                this.initial = 2;
+                this.start = true;
+    
+            } else {
+                this.start = false;
+            }
+
+        } else {
+            this.start = false;
+
+        }
     }
+   
 };
