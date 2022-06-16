@@ -69,6 +69,9 @@ let chosePlayer = false;
 function loop() {
 
    if(!chosePlayer) {
+        audioBattle.pause();
+        audioRuta.pause();
+        
         ctx.drawImage(backgroundImage, 0, 0, canvas.width, canvas.height);
 
         ctx.drawImage(bulbasaur, 50, 200, bulbasaur.width, bulbasaur.height);
