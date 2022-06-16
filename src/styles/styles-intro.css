@@ -4,6 +4,10 @@ body{
     background-size: cover;
 }
 
+h2 {
+    font-family: "Audiowide", sans-serif;
+}
+
 .button_start {
     display: flex;
 	flex-direction: row;
@@ -18,6 +22,25 @@ body{
 	flex-direction: row;
 	flex-wrap: nowrap;
 	justify-content: space-evenly;
+	align-items: stretch;
+	align-content: stretch;
+}
+
+.references {
+    padding-top: 100px;
+    display: flex;
+	flex-direction: row;
+	flex-wrap: nowrap;
+	justify-content:center;
+	align-items: stretch;
+	align-content: stretch;
+}
+
+.name {
+    display: flex;
+	flex-direction: row;
+	flex-wrap: nowrap;
+	justify-content: center;
 	align-items: stretch;
 	align-content: stretch;
 }
