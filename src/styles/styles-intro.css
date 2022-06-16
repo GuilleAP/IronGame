@@ -1,11 +1,19 @@
 body{
-    /*background-image: url("./src/background_inici.png");*/
     background-color: rgb(238, 221, 183);
     background-repeat: no-repeat;
     background-size: cover;
 }
 
-.button_chose {
+.button_start {
+    display: flex;
+	flex-direction: row;
+	flex-wrap: nowrap;
+	justify-content: space-evenly;
+	align-items: stretch;
+	align-content: stretch;
+}
+
+.title {
     display: flex;
 	flex-direction: row;
 	flex-wrap: nowrap;
@@ -16,4 +24,11 @@ body{
 
 input :hover {
     box-shadow: 100%;
+}
+
+form {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: space-between;
 }

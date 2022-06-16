@@ -63,4 +63,8 @@ class Game {
             }
         }
     }
+
+    choseInitialPokemon() {
+        
+    }
 };

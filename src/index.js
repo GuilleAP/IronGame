@@ -1,11 +1,14 @@
 let initial = document.querySelector(".bulbasaur");
 console.log(initial);
 
+//Creación del juego
 let game = new Game();
 const ctx = game.startGame();
 
+//Creación del mapa
 const backgroundImage = game.createMap();
 
+//Inicialización de las imágenes
 const battleBackground = new Image();
 battleBackground.src = "./source/battleBaclground.png";
 const attackBar = new Image();
@@ -15,6 +18,7 @@ attackBarBattle.src = "./source/attack_bar_battle.png";
 const pokeWin = new Image();
 pokeWin.src = "./source/pokeWin.png";
 
+//Inicialización del audio
 let audioFail = new Audio("./source/sound/fail_sound.mp3");
 let audioHit = new Audio("./source/sound/hit_sound.mp3");
 let audioRuta = new Audio("./source/sound/route_audio.mp3");
@@ -24,7 +28,7 @@ let audioEnding = new Audio("./source/sound/ending_theme.mp3");
 
 
 
-
+//Creación del mapa y el jugador
 let map = new Mapa();
 let player = new Player(map.matrixCollisions);
 let pokeball;
@@ -32,10 +36,11 @@ let pokeball;
 
 let initialPlayer = 1;
 
+
+///////////////////////VARIABLES GLOBALES///////////////////////
 let playerUI, enemyUI, poke;
 let initialPoke, enemy, pokeEnemy;
 
-player.initialPokemon(initialPlayer);
 
 let canSpawn = false;
 let isBattle = false;
@@ -50,7 +55,11 @@ let frameCounterPokemon;
 let playerAttack = false;
 let win = false;
 
+////////////////////////////////////////////////////////////////
 
+player.initialPokemon(initialPlayer);
+
+//Loop principal del juego
 function loop() {
 
     if(gameOver) {
@@ -113,7 +122,6 @@ function loop() {
             
             if(!startBattle) {
                 poke = new Pokemon();
-                let battleWin = false;
                 pokeEnemy = poke.setRandomBattle();
                 poke.setBattle(pokeEnemy);
                 console.log(enemy);
@@ -154,6 +162,7 @@ function loop() {
                             isBattle = false;
                             startBattle = false;
                             turno = 0;
+
                         } else {
                             turno = 1;
                         }
@@ -195,7 +204,6 @@ function loop() {
     }
     
     requestAnimationFrame(loop);
-    console.log(turno);
 }
     
 
