@@ -1,8 +1,12 @@
 class Pokemon {
     constructor() {
+        //Variable control para ver si el pokemon puede aparezer en el mapa
         this.pokemonInGame = false;
-        this.pokeball;
+
+        //VIda del pokemon enemigo
         this.live = 100;
+
+        //Identificador del pokemon
         this.pokeNumber;
     }
 

@@ -1,10 +1,7 @@
 class Game {
     constructor() {
-        //this.musicRuta = document.getElementById("audioRuta");
-        //this.musicBattle = document.getElementById("audioBattle");
-        
-        this.initial;
-        this.start = false;
+        this.initial;           // Pokeomn inicial
+        this.start = false;     // Variable control para ver si el juego puede empezar
     }
 
     startGame() {
@@ -22,23 +19,6 @@ class Game {
         return new Player()
     }
 
-    playMusicRoute() {
-        this.musicRuta.play();
-        this.musicBattle.pause();
-    }
-
-    pauseMusicRoute() {
-        this.musicRuta.pause();
-    }
-
-    playMusicBattle() {
-        this.musicRuta.pause();
-        this.musicBattle.play();
-    }
-
-    pauseMusicBattle() {
-        this.musicBattle.pause();
-    }
 
     battle(canvas, battleBackground, enemyUI, playerUI, enemy, initialPoke, attackBarBattle) {
         ctx.clearRect(0, 0, canvas.width, canvas.height);

@@ -1,32 +1,36 @@
 class Player {
     constructor(matrix) {
+        //Posicion del jugador, se inicializan en el centro del mapa
         this.posX = 928;
         this.posY = 352;
         
+        //Vida del jugador
         this.live = 100;
 
+        //Numero de pokemons diferentes capturados
         this.pokeWins = 0;
 
+        //Creacion e inicializacion de la imagen del personaje
         let image = new Image();
         image.src = "./source/imagenes_ash/ash_abajo.png";
         this.image = image;
 
+        //Tamaño de la imagen del personaje
         this.width = image.width;
         this.heigth = image.height;
 
+        //Matriz de colisiones
         this.matrix = matrix;
 
+        //Array de pokemons capturados por el jugador
         this.pokemons = [false, false, false, false, false, false, false];
 
+        //Variable control para ver si el jugador puede atacar
         this.playerAttack = false;
     }
 
     drawPlayer() {
         ctx.drawImage(this.image, this.posX, this.posY, this.width, this.heigth);
-    }
-
-    clearPlayer() {
-        ctx.clearRect(this.posX, this.posY, this.width, this.heigth);
     }
 
     nextPossiblePos(direction) {

@@ -43,23 +43,20 @@ let initialPlayer;
 
 
 ///////////////////////VARIABLES GLOBALES///////////////////////
-let playerUI, enemyUI, poke;
-let initialPoke, enemy, pokeEnemy;
+let playerUI, enemyUI, poke;            // Inicializacion de las variables del UI (jugador y enemigo), jugador,                                                                            
+let initialPoke, enemy, pokeEnemy;      // enemigo, pokeballs enemigas y pokemon inicial
 
 
-let canSpawn = false;
-let isBattle = false;
-let musicBattle = false;
-let audioRoute = false;
-let gameOver = false;
-let startBattle = false;
-let isPokeball = false;
-let music = true;
-let turno = 0;
-let frameCounterPokemon;
-let playerAttack = false;
-let win = false;
-let chosePlayer = false;
+let canSpawn = false;       //True: Puede salir una pokeball                        False: No puede
+let isBattle = false;       //True: Estas en combate                                False: Estas en ruta
+let gameOver = false;       //True: Aparece pantalla de Game Over                   False: Ejecuta el juego de forma normal
+let startBattle = false;    //True: Inicialización del combate                      False: El combate esta en curso
+let isPokeball = false;     //True: Hay pokeball en el mapa                         False: creacion e inicializacion de nueva pokeball
+let turno = 0;              //Inicializaicion del turno al jugador.
+let frameCounterPokemon;    //Contador de frames para pausar 2 segundos el turno del pokemon.
+let playerAttack = false;   //True: El jugador puede atacar                         False: El jugador no puede atacar
+let win = false;            //True: Aparece pantallad de ganador                    False: Ejecuta el juego de forma normal
+let chosePlayer = false;    //True: El jugador ya ha escogido el pokemon inicial    False: Seleccion de jugador activa
 
 ////////////////////////////////////////////////////////////////
 
@@ -71,7 +68,7 @@ function loop() {
    if(!chosePlayer) {
         audioBattle.pause();
         audioRuta.pause();
-        
+
         ctx.drawImage(backgroundImage, 0, 0, canvas.width, canvas.height);
 
         ctx.drawImage(bulbasaur, 50, 200, bulbasaur.width, bulbasaur.height);

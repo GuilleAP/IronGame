@@ -1,8 +1,13 @@
 class Pokeball {
     constructor(posX, posY, matrix) {
+        //POsicion de la pokeball en el mapa
         this.posX = posX;
         this.posY = posY;
+
+        //Tipo de pokeball que va a aparecer
         this.pokeball;
+
+        //Matriz de colisiones
         this.matrix = matrix;
     }
 
