@@ -1,7 +1,7 @@
 class Game {
     constructor() {
-        this.musicRuta = document.getElementById("audioRuta");
-        this.musicBattle = document.getElementById("audioBattle");
+        //this.musicRuta = document.getElementById("audioRuta");
+        //this.musicBattle = document.getElementById("audioBattle");
         
         this.initial;
         this.start = false;
